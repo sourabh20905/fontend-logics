@@ -18,4 +18,5 @@ function App() {
 export default App;
 
 // BrowserRouter is a component from react-router-dom that enables client-side routing in React applications using the HTML5 History API.
-// 
+// It lets your React app change URLs and pages without reloading the browser.
+//BrowserRouter is a React Router component that uses the HTML5 History API to manage client-side navigation without page reloads.
