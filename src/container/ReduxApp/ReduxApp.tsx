@@ -5,6 +5,7 @@ import { increment, decrement } from "@/src/redux/slice/counter/counter";
 const ReduxApp = () => {
   const count = useSelector((state: RootState) => state.counter.value);
   const dispatch = useDispatch();
+  console.log(dispatch, "dispatch");
   return (
     <div>
       <h1>ReduxApp Counter</h1>
