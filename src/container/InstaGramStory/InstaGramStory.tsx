@@ -1,6 +1,11 @@
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 
+// validation is missing in this code
+// modal is missing 
+// on referesh page what should be the approach to handle the state 
+
+
 interface Story {
   id: string;
   url: string;
