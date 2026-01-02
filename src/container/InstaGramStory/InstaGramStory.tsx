@@ -2,9 +2,8 @@ import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 
 // validation is missing in this code
-// modal is missing 
-// on referesh page what should be the approach to handle the state 
-
+// modal is missing
+// on referesh page what should be the approach to handle the state
 
 interface Story {
   id: string;
@@ -60,7 +59,6 @@ const InstaGramStory = () => {
       return newStories;
     });
 
-    // Reset file input so the same file can be selected again
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
