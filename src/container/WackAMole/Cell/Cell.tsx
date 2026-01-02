@@ -12,7 +12,7 @@ const Cell = ({ key, row, col, molPos }: CellProps) => {
       key={key}
       className="size-10 border border-gray-300 flex items-center justify-center"
     >
-      {row === molPos?.[0] && col === molPos?.[1] ? "mole" : "empty"}
+      {row === molPos?.[0] && col === molPos?.[1] && "mole"}
     </div>
   );
 };
