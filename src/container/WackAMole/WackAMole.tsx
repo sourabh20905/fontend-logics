@@ -1,18 +1,22 @@
+import { useState } from "react";
+import Cell from "./Cell/Cell";
+import { getMolePosition } from "./WackAMole.utils";
+
 interface WackAMoleProps {
   size: number;
 }
 
 const WackAMole = ({ size }: WackAMoleProps) => {
   console.log(size, "size");
+  const [molPos, setMolPos] = useState(getMolePosition(size));
+  console.log(molPos, "molPos");
   return (
     <div>
-      {Array.from({ length: size }).map((_value, index) => {
+      {Array.from({ length: size }).map((_item, row) => {
         return (
-          <div key={index} className="flex">
-            {Array.from({ length: size }).map((value, index) => (
-              <div key={index} className="size-10 bg-red-500 flex">
-                cell
-              </div>
+          <div key={row} className="flex">
+            {Array.from({ length: size }).map((_item, col) => (
+              <Cell key={col} row={row} col={col} molPos={molPos} />
             ))}
           </div>
         );
