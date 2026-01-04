@@ -1,6 +1,10 @@
 "use client";
 
-import WackAMole from "@/src/container/WackAMole";
+import dynamic from "next/dynamic";
+
+const WackAMole = dynamic(() => import("@/src/container/WackAMole"), {
+  ssr: false,
+});
 
 const WhackAMolePage = () => {
   return (
