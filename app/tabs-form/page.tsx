@@ -1,3 +1,4 @@
+"use client"
 import TabsForm from "@/src/container/TabsForm";
 
 const TabsFormPage = () => {
