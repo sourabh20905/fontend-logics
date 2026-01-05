@@ -4,17 +4,15 @@ interface ProfileProps {
 }
 
 export default function Profile({ data, setData }: ProfileProps) {
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    value: string
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setData((prev) => {
       return {
         ...prev,
-        [value]: e.target.value,
+        [e.target.name]: e.target.value,
       };
     });
+    console.log(data, "data");
   };
   return (
     <div className="flex flex-col gap-10">
@@ -22,24 +20,27 @@ export default function Profile({ data, setData }: ProfileProps) {
         <input
           type="text"
           placeholder="Name"
+          name="name"
           className="p-4 border border-gray-200 rounded-md"
-          onChange={(e) => handleChange(e, "name")}
+          onChange={handleChange}
         />
       </label>
       <label>
         <input
           type="text"
           placeholder="Email"
+          name="email"
           className="p-4 border border-gray-200 rounded-md"
-          onChange={(e) => handleChange(e, "email")}
+          onChange={handleChange}
         />
       </label>
       <label>
         <input
           type="numeric"
           placeholder="age"
+          name="age"
           className="p-4 border border-gray-200 rounded-md"
-          onChange={(e) => handleChange(e, "age")}
+          onChange={handleChange}
         />
       </label>
     </div>

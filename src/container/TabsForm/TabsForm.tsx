@@ -1,7 +1,5 @@
 import { useState } from "react";
-import Interest from "./Interests";
-import Profile from "./Profile";
-import Settings from "./Settings";
+import { tabs } from "./config";
 
 const TabsForm = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -10,22 +8,12 @@ const TabsForm = () => {
     name: "sourabh",
     email: "email",
     age: 23,
+    interests: ["dancing", "singing", "reading"],
+    settings: {
+      theme: "light",
+      language: "en",
+    },
   });
-
-  const tabs = [
-    {
-      name: "Profile",
-      component: Profile,
-    },
-    {
-      name: "Settings",
-      component: Settings,
-    },
-    {
-      name: "Interest",
-      component: Interest,
-    },
-  ];
 
   const ActiveTabComponent = tabs[activeTab].component;
 
