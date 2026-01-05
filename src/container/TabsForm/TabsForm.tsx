@@ -11,7 +11,6 @@ const TabsForm = () => {
     interests: ["dancing", "singing", "reading"],
     settings: {
       theme: "light",
-      language: "en",
     },
   });
 
