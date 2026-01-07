@@ -27,12 +27,36 @@ const NestedCheckBox = () => {
       e: React.ChangeEvent<HTMLInputElement>,
       node: CheckboxNode
     ) => {
+      const isChecked = e.target.checked;
+
       setChecked((prev) => {
-        console.log(prev);
-        return {
-          ...prev,
-          [node.id]: e.target.checked,
+        const newState = { ...prev };
+        console.log(newState, "newState");
+
+        //  Update node and all children
+        const updateChildren = (n: CheckboxNode) => {
+          newState[n.id] = isChecked;
+          console.log(newState, "updateChildren");
+          n.children?.forEach(updateChildren);
         };
+
+        updateChildren(node);
+
+        //  Recalculate parents (bottom-up)
+        const updateParents = (n: CheckboxNode): boolean => {
+          if (!n.children || n.children.length === 0) {
+            return newState[n.id] ?? false;
+          }
+
+          const allChildrenChecked = n.children.every(updateParents);
+          newState[n.id] = allChildrenChecked;
+          return allChildrenChecked;
+        };
+
+        // start from ROOT
+        checkboxes.forEach(updateParents);
+
+        return newState;
       });
     };
 
