@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { tabs } from "./config";
+import { FormDataType } from "./TabForm.types";
 
 const TabsForm = () => {
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState<number>(0);
 
-  const [data, setData] = useState({
+  const [data, setData] = useState<FormDataType>({
     name: "sourabh",
     email: "email",
     age: 23,

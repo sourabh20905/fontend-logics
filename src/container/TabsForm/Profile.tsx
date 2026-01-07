@@ -1,6 +1,9 @@
+import { Dispatch, SetStateAction } from "react";
+import { FormDataType } from "./TabForm.types";
+
 interface ProfileProps {
-  data: any;
-  setData: any;
+  data: FormDataType;
+  setData: Dispatch<SetStateAction<FormDataType>>;
 }
 
 export default function Profile({ data, setData }: ProfileProps) {
