@@ -34,6 +34,11 @@ const TodoApp = () => {
     );
   };
 
+  // we can do this as well
+
+  //   1️⃣ Add completed / checkbox (cleanly)
+  // 2️⃣ Add localStorage persistence
+
   return (
     <>
       <h2>This is my Todo App</h2>
