@@ -1,44 +1,69 @@
 "use client";
 
-import {} from "@reduxjs/toolkit";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 
-interface todoType {
-  id: number;
-  todo: string;
+interface Todo {
+  id: string;
+  text: string;
 }
 
 const TodoApp = () => {
-  const [todos, setTodos] = useState<todoType[]>([]);
-  const [task, setTask] = useState("");
-  console.log(todos);
-  const handleTask = (e: ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    console.log("in the handleTask");
-    setTask(e.target.value);
-    console.log(task);
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const [inputValue, setInputValue] = useState("");
+  const [editingId, setEditingId] = useState<string | null>(null);
+
+  const handleAddTodo = () => {
+    if (!inputValue.trim()) return;
+
+    const newTodo: Todo = {
+      id: Date.now().toString(),
+      text: inputValue,
+    };
+
+    setTodos((prev) => [...prev, newTodo]);
+    setInputValue("");
   };
 
-  const handleAddTask = (task: string) => {
-    const id = "id";
-    setTodos((prev) => [...prev, task]);
-    console.log(todos);
+  const handleDelete = (id: string) => {
+    setTodos((prev) => prev.filter((todo) => todo.id !== id));
+  };
+
+  const handleEditChange = (id: string, value: string) => {
+    setTodos((prev) =>
+      prev.map((todo) => (todo.id === id ? { ...todo, text: value } : todo))
+    );
   };
 
   return (
     <>
-      <div className="flex items-center justify-center">
-        This is my to do app
-      </div>
+      <h2>This is my Todo App</h2>
+
       <input
-        placeholder="Type a task here.."
-        onChange={(e) => handleTask(e)}
-        className="w-full p-6 text-2xl border border-gray-50"
+        value={inputValue}
+        placeholder="Type a task..."
+        onChange={(e) => setInputValue(e.target.value)}
       />
-      <button onClick={() => handleAddTask(task)}>Add task</button>
-      {todos.map((todo) => {
-        return <div key={todo}></div>;
-      })}
+      <button onClick={handleAddTodo}>Add</button>
+
+      {todos.map((todo) => (
+        <div key={todo.id}>
+          {editingId === todo.id ? (
+            <input
+              value={todo.text}
+              onChange={(e) => handleEditChange(todo.id, e.target.value)}
+            />
+          ) : (
+            <span>{todo.text}</span>
+          )}
+
+          <button onClick={() => handleDelete(todo.id)}>Delete</button>
+          <button
+            onClick={() => setEditingId(editingId === todo.id ? null : todo.id)}
+          >
+            {editingId === todo.id ? "Save" : "Edit"}
+          </button>
+        </div>
+      ))}
     </>
   );
 };
