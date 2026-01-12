@@ -24,10 +24,7 @@ const PaginationFeature = () => {
     fetchAllProducts();
   }, []);
 
-  console.log(data?.products?.length);
-
   const pageCount = Math.ceil(data?.products?.length / 10);
-  console.log(pageCount);
 
   const start = currentPage * 10;
   const end = start + 10;
