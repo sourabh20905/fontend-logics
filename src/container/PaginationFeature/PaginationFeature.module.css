@@ -4,3 +4,8 @@
   cursor: pointer;
   margin-inline: 2px;
 }
+
+.active {
+  border: 1px solid skyblue;
+  text: skyblue;
+}
