@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import style from ""
+import style from "./PaginationFeature.module.css";
 
 const PaginationFeature = () => {
   const [data, setData] = useState();
-  const [start, end] = useState();
+  const [currentPage, setCurrentPage] = useState(0);
 
   console.log(data, "data");
 
@@ -29,13 +29,20 @@ const PaginationFeature = () => {
   const pageCount = Math.ceil(data?.products?.length / 10);
   console.log(pageCount);
 
+  const start = currentPage * 10;
+  const end = start + 10;
+
+  const handlePageClick = (n: number) => {
+    setCurrentPage(n);
+  };
+
   return (
     <div>
       <h1>Pagination of products</h1>
       <div>
         {data &&
           data?.products &&
-          data?.products?.slice(0, 10).map((item: any) => {
+          data?.products?.slice(start, end).map((item: any) => {
             return <div key={item.id}>{item.title}</div>;
           })}
       </div>
@@ -43,7 +50,15 @@ const PaginationFeature = () => {
       <div>
         {pageCount &&
           [...Array(pageCount)?.keys()]?.map((n) => {
-            return <span key={n}  className={style}>{n}</span>;
+            return (
+              <span
+                key={n}
+                className={style.pagecount}
+                onClick={() => handlePageClick(n)}
+              >
+                {n}
+              </span>
+            );
           })}
       </div>
     </div>
