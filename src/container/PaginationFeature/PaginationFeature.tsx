@@ -5,9 +5,7 @@ import style from "./PaginationFeature.module.css";
 
 const PaginationFeature = () => {
   const [data, setData] = useState();
-  const [currentPage, setCurrentPage] = useState(0);
-
-  console.log(data, "data");
+  const [currentPage, setCurrentPage] = useState<number>(0);
 
   useEffect(() => {
     async function fetchAllProducts() {
